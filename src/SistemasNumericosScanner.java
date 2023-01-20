@@ -1,4 +1,6 @@
 import javax.swing.*;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class SistemasNumericosScanner {
     public static void main(String[] args) {
@@ -33,13 +35,15 @@ public class SistemasNumericosScanner {
 
         //modificaciones y arreglos de codigo anterior
 
-        String dialogo=JOptionPane.showInputDialog(null, "ingrese un numero");
+        Scanner scaner = new Scanner(System.in);
+        System.out.println("Ingrese un numero ENTERO");
+        //String dialogo = scaner.nextLine();
         int numeroEntero = 0;
 
         try {
-            numeroEntero = Integer.parseInt(dialogo);
-        }catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Error digite un numero entero");
+            numeroEntero = scaner.nextInt(); //Integer.parseInt(numeroEntero);
+        }catch (InputMismatchException e) {
+            System.out.println("ERROR, ingrese un numero entero");
             main(args);
             System.exit(0);
         }
@@ -48,30 +52,19 @@ public class SistemasNumericosScanner {
 
         //convertir enteros a binarios
         String mensajeBinario = "el numero " + numeroEntero + " en vinario es = " + Integer.toBinaryString(numeroEntero);
-        System.out.println(mensajeBinario);
-
-        //anotacion de numero binario dentro de una variable int
-        int numeroBinario=0b1010; //se coloca el numero binario y se le antepone el 0b
-        System.out.println("numeroBinario = " + numeroBinario);
 
         //Sistema octal
         String mensajeOctal = "numero octal de " + numeroEntero + " = " + Integer.toOctalString(numeroEntero);
-        System.out.println(mensajeOctal);
-        int octal=012; //se anota el octal en este caso de 500 y se le antepone el 0
-        System.out.println("octal = " + octal);
 
         //Hexadecimal
         String mensajeHexa = "Numero hexadecimal de " + numeroEntero + " = " + Integer.toHexString(numeroEntero);
-        System.out.println(mensajeHexa);
-        int hexadecimal=0xa; //se anota el hexadecimal en este caso de 500 y se le antepone el 0x
-        System.out.println("hexadecimal = " + hexadecimal);
 
-        //impresion dinamica o en cuadro de dialogo
+        //impresion
         String mensaje =  "SISTEMA NUMERICO";
         mensaje +="\n" + mensajeBinario;
         mensaje +="\n" + mensajeOctal;
         mensaje +="\n" + mensajeHexa;
-        JOptionPane.showMessageDialog(null, "\n" + mensaje);
 
+        System.out.println(mensaje);
     }
 }
